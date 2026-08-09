@@ -1147,21 +1147,21 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   margin-bottom: 1.2rem;
 }
 .tool-mark {
   display: block;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
-  opacity: .7;
+  opacity: .75;
   transition: opacity .35s var(--ease);
 }
-/* Optical size: dense/complex marks read smaller than bold glyphs */
-.tool:nth-child(2) .tool-mark { width: 40px; height: 40px; } /* Codex */
-.tool:nth-child(4) .tool-mark { width: 28px; height: 42px; } /* skills.sh slash */
+/* Optical size: fine-line / thin marks need a bump to match weight */
+.tool-mark--codex { width: 52px; height: 52px; }
+.tool-mark--skills { width: 30px; height: 46px; }
 .tool:hover .tool-mark { opacity: 1; }
 .tool-name {
   font-size: .78rem;
