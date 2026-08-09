@@ -635,13 +635,25 @@ body { opacity: 0; animation: pageIn .55s var(--ease) forwards; }
 @keyframes pageIn { to { opacity: 1; } }
 body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
 
-/* ---------------- contact page ---------------- */
-.contact-h {
+/* ---------------- contact / about openers ---------------- */
+.contact-h,
+.about-h {
   font-size: clamp(2.6rem, 6.4vw, 4.8rem);
   margin: 2rem 0 3rem;
   max-width: 12em;
 }
-.contact-h em { color: var(--ink-soft); }
+.contact-h em,
+.about-h em { color: var(--ink-soft); }
+.about-wrap .about-h { margin-bottom: 2.2rem; }
+.bio .text-link {
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: border-color .3s var(--ease), color .3s var(--ease);
+}
+.bio .text-link:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
 .footer--slim { padding: 2.2rem 0; }
 
 /* ---------------- reveal on scroll ---------------- */
