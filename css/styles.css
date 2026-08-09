@@ -635,16 +635,14 @@ body { opacity: 0; animation: pageIn .55s var(--ease) forwards; }
 @keyframes pageIn { to { opacity: 1; } }
 body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
 
-/* ---------------- contact / about openers ---------------- */
-.contact-h,
-.about-h {
+/* ---------------- contact opener ---------------- */
+.contact-h {
   font-size: clamp(2.6rem, 6.4vw, 4.8rem);
   margin: 2rem 0 3rem;
   max-width: 12em;
 }
-.contact-h em,
-.about-h em { color: var(--ink-soft); }
-.about-wrap .about-h { margin-bottom: 2.2rem; }
+.contact-h em { color: var(--ink-soft); }
+.about-wrap .section-head { margin-bottom: 2.2rem; }
 .bio .text-link {
   font-size: inherit;
   letter-spacing: 0;
@@ -1137,25 +1135,30 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
 }
 .tool {
   background: var(--panel);
-  padding: clamp(1.6rem, 3vw, 2.2rem) 1.4rem;
+  padding: clamp(1.6rem, 3vw, 2.2rem) 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   transition: background .35s var(--ease);
 }
 .tool:hover { background: var(--panel-2); }
+.tool-mark-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.2rem;
+}
 .tool-mark {
   display: block;
-  height: 30px;
-  width: auto;
-  max-width: 100%;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
   opacity: .65;
-  margin-bottom: 1.2rem;
   transition: opacity .35s var(--ease);
 }
-.tool-mark--codex { height: 26px; margin-top: 2px; margin-bottom: 1.45rem; }
-.tool-mark--pi { height: 24px; margin-top: 3px; margin-bottom: 1.55rem; }
-.tool-mark--skills { height: 27px; margin-top: 1.5px; margin-bottom: 1.5rem; }
 .tool:hover .tool-mark { opacity: 1; }
 .tool-name {
   font-size: .78rem;
