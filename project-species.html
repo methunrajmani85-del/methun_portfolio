@@ -5,10 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Species ID — Methun Raj</title>
 <meta name="description" content="Species identification API — M.Sc. thesis. A CNN identifying regional plant and insect species, served behind an API with continuous retraining.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Species ID — Methun Raj">
+<meta property="og:description" content="Species identification API — M.Sc. thesis. A CNN identifying regional plant and insect species, served behind an API with continuous retraining.">
+<meta property="og:site_name" content="Methun Raj">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Species ID — Methun Raj">
+<meta name="twitter:description" content="Species identification API — M.Sc. thesis. A CNN identifying regional plant and insect species, served behind an API with continuous retraining.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist+Pixel&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body>
 
@@ -25,59 +33,78 @@
 </header>
 
 <main>
-  <section class="section">
-    <div class="container">
+  <section class="section section--doc">
+    <div class="pd-wrap">
       <a class="pd-back" href="projects.html">&larr; Projects</a>
-      <p class="pd-label reveal">Selected project</p>
-      <div class="pd-head reveal">
-        <p class="pd-num">04</p>
-        <h1 class="pd-title">Species ID</h1>
-      </div>
-      <p class="pd-tagline reveal">M.Sc. thesis — a CNN identifying regional species, served as a self-improving API.</p>
 
-      <div class="pd-desc reveal">
-        <p>A convolutional network identifying <strong>regional plant and insect species from
-        photographs</strong> — trained, evaluated, and served behind an API with continuous
-        retraining, so the model improves as new labeled data arrives.</p>
-        <p>An early end-to-end ML system: data collection and labeling, model training, API
-        serving, and the retraining loop — the same shape as the production systems I build
-        today, just a few years earlier.</p>
-      </div>
+      <p class="pd-eyebrow reveal">
+        <span>Thesis project</span>
+        <span class="pd-pos"><b>04</b> / 04</span>
+      </p>
 
-      <div class="pd-outcome reveal">
-        <b>Outcome</b>
-        <p>M.Sc. Smart Systems · Hochschule Furtwangen University · 2023</p>
+      <div class="pd-hero">
+        <div class="reveal">
+          <h1 class="pd-title">Species ID</h1>
+          <p class="pd-tagline">M.Sc. thesis — a CNN identifying regional species, served as a
+          self-improving API.</p>
+        </div>
+        <div class="pd-media pd-plate reveal">
+          <img src="assets/covers/species.png" alt="Species identification API monogram">
+        </div>
       </div>
 
-      <div class="pd-links reveal">
-        <span class="pd-internal">Academic project — thesis and results on request.</span>
+      <ul class="pd-band reveal">
+        <li><b>2023</b><span>M.Sc. Smart Systems, Hochschule Furtwangen</span></li>
+        <li><b>End to end</b><span>data collection through to a served API</span></li>
+        <li><b>Continuous</b><span>retraining as new labeled data arrives</span></li>
+      </ul>
+
+      <div class="pd-body">
+        <div class="pd-main">
+          <section class="pd-sec reveal">
+            <h2>The model</h2>
+            <div>
+              <p>A convolutional network identifying <strong>regional plant and insect species from
+              photographs</strong> — trained, evaluated, and served behind an API with continuous
+              retraining, so the model improves as new labeled data arrives.</p>
+            </div>
+          </section>
+          <section class="pd-sec reveal">
+            <h2>Why it counts</h2>
+            <div>
+              <p>An early end-to-end ML system: data collection and labeling, model training, API
+              serving, and the retraining loop — the same shape as the production systems I build
+              today, just a few years earlier.</p>
+            </div>
+          </section>
+        </div>
+
+        <dl class="pd-ledger reveal">
+          <dt>School</dt>
+          <dd>Hochschule Furtwangen, Germany</dd>
+
+          <dt>Stack</dt>
+          <dd>
+            <ul class="pd-specs">
+              <li>Python</li>
+              <li>Computer vision · CNN</li>
+              <li>REST API</li>
+              <li>Continuous retraining</li>
+            </ul>
+          </dd>
+        </dl>
       </div>
 
-      <div class="pd-stack reveal">
-        <span class="chip">Python</span>
-        <span class="chip">Computer vision · CNN</span>
-        <span class="chip">REST API</span>
-        <span class="chip">Continuous retraining</span>
-      </div>
-
-      <div class="pd-cover reveal">
-        <img src="covers/species.png" alt="Species identification API cover">
-      </div>
-
-      <div class="pd-next reveal">
-        <a class="text-link" href="projects.html">Back to all projects &rarr;</a>
-      </div>
+      <a class="pd-nextrow reveal" href="projects.html">
+        <span class="n-label">Back to</span>
+        <span class="n-name">All projects</span>
+        <span class="n-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
   </section>
 </main>
 
-<footer class="footer footer--slim">
-  <div class="container footer-base">
-    <span>Methun Raj — Hamburg, Germany</span>
-    <span>Built with Canvas UI · Web Audio</span>
-  </div>
-</footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=2"></script>
 </body>
 </html>
