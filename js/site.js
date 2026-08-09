@@ -35,10 +35,20 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ---------- reduced motion: hand autoplaying video back to the user ---------- */
+  if (reducedMotion) {
+    Array.prototype.forEach.call(document.querySelectorAll("video[autoplay]"), function (v) {
+      v.removeAttribute("autoplay");
+      v.removeAttribute("loop");
+      v.setAttribute("controls", "");
+      v.pause();
+    });
   }
 
   /* ---------- Canvas UI: Ripple (landing only) ---------- */
@@ -84,8 +94,13 @@
       window.__soundArmed = true;
     } catch (e) {}
   }
+  /* Create the context on the first sign of a pointer, not just on click —
+     otherwise the first hover on every page is silent, because a page load
+     throws the previous page's context away. Browsers still gate playback on
+     the visitor having interacted with the site at least once. */
   window.addEventListener("pointerdown", arm, { passive: true });
   window.addEventListener("keydown", arm);
+  window.addEventListener("pointermove", arm, { passive: true, once: true });
 
   function cue(freq, dur, peak, type, slideTo, delay) {
     if (!soundOn || !actx || !master) return;
@@ -126,13 +141,22 @@
   }
 
   function tick() { // hover: soft pluck + airy overtone, throttled
+    arm();
     var now = performance.now();
     if (now - lastTick < 60) return;
     lastTick = now;
     cue(1750, 0.05, 0.05, "sine", 1150);
     cue(3500, 0.03, 0.018, "sine");
   }
+  function softTick() { // hover on a surface that reacts but doesn't navigate
+    arm();
+    var now = performance.now();
+    if (now - lastTick < 60) return;
+    lastTick = now;
+    cue(1180, 0.045, 0.022, "sine", 940);
+  }
   function press() { // two-part mechanical click, down
+    arm(); // first gesture creates the context and still plays in the same tick
     thock(0.028, 0.35, 750);
     cue(150, 0.08, 0.14, "triangle", 95);
   }
@@ -146,9 +170,19 @@
     cue(1975.5, 0.12, 0.022, "sine", null, 0.075);
   }
 
-  var HOVER_SEL = ".nav-links a, .index-row, .btn, .text-link, .footer-links a, .footer-mail, .bio-cta a, .live-link, .sound-state, .brand";
+  /* Anything that navigates or opens something gets the full tick. */
+  var HOVER_SEL = [
+    ".nav-links a", ".brand", ".index-row", ".text-link",
+    ".contact-links a", ".live-link",
+    ".proj-card", ".pd-nextrow", ".pd-back", ".tl-row", ".xp-close", ".now-status"
+  ].join(", ");
+  /* Surfaces that highlight on hover but aren't clickable get a quieter cue,
+     so sound never implies an interaction that isn't there. */
+  var HOVER_SOFT_SEL = ".j-row, .tool";
   document.addEventListener("pointerover", function (e) {
-    if (e.target.closest && e.target.closest(HOVER_SEL)) tick();
+    if (!e.target.closest) return;
+    if (e.target.closest(HOVER_SEL)) tick();
+    else if (e.target.closest(HOVER_SOFT_SEL)) softTick();
   });
   document.addEventListener("pointerdown", function (e) {
     if (e.target.closest && e.target.closest("a, button")) press();
@@ -180,6 +214,11 @@
     var xpChapter = document.getElementById("xp-chapter");
     var docs = xpBody.querySelectorAll(".xp-doc");
 
+    var panel = overlay.querySelector(".xp-panel");
+    var closeBtn = document.getElementById("xp-close");
+    var lastFocused = null;
+    var FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
     function openPanel(key, chapter) {
       Array.prototype.forEach.call(docs, function (d) {
         d.classList.toggle("show", d.getAttribute("data-doc") === key);
@@ -189,6 +228,8 @@
       xpBody.parentNode.scrollTop = 0;
       requestAnimationFrame(function () { overlay.classList.add("open"); });
       document.body.style.overflow = "hidden";
+      lastFocused = document.activeElement;
+      closeBtn.focus();
       confirmNav();
     }
     function closePanel() {
@@ -196,7 +237,25 @@
       overlay.classList.remove("open");
       document.body.style.overflow = "";
       tick();
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+      lastFocused = null;
       setTimeout(function () { overlay.hidden = true; }, 500);
+    }
+    /* keep Tab inside the dialog while it is open */
+    function trapTab(e) {
+      if (e.key !== "Tab" || overlay.hidden) return;
+      var items = Array.prototype.filter.call(
+        panel.querySelectorAll(FOCUSABLE),
+        function (el) { return el.offsetParent !== null; }
+      );
+      if (!items.length) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
     }
 
     Array.prototype.forEach.call(document.querySelectorAll("[data-panel]"), function (btn) {
@@ -205,9 +264,10 @@
       });
     });
     overlay.querySelector("[data-close]").addEventListener("click", closePanel);
-    document.getElementById("xp-close").addEventListener("click", closePanel);
+    closeBtn.addEventListener("click", closePanel);
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closePanel();
+      else trapTab(e);
     });
   }
 })();

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Chirp">
+  <defs>
+    <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.6" fill="#ECE8E0" opacity=".10"/>
+    </pattern>
+    <pattern id="mono" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="11" r="6.4" fill="#8B7CF6"/>
+    </pattern>
+    <mask id="letters">
+      <rect width="1600" height="1000" fill="#000"/>
+      <text x="800" y="500" fill="#fff" text-anchor="middle" dominant-baseline="central"
+            font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+            font-weight="700" font-size="470" letter-spacing="18">CH</text>
+    </mask>
+  </defs>
+  <rect width="1600" height="1000" fill="#0F0E0C"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <ellipse cx="1020" cy="400" rx="720" ry="470" fill="#ECE8E0" opacity=".035"/>
+  <rect width="1600" height="1000" fill="url(#mono)" mask="url(#letters)"/>
+</svg>

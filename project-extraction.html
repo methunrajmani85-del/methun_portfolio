@@ -5,10 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Image Extraction — Methun Raj</title>
 <meta name="description" content="AI image extraction platform — built end to end for Swift ProSys. Desktop app, self-hosted Supabase/Postgres, multi-provider LLM routing.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Extraction — Methun Raj">
+<meta property="og:description" content="AI image extraction platform — built end to end for Swift ProSys. Desktop app, self-hosted Supabase/Postgres, multi-provider LLM routing.">
+<meta property="og:site_name" content="Methun Raj">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Extraction — Methun Raj">
+<meta name="twitter:description" content="AI image extraction platform — built end to end for Swift ProSys. Desktop app, self-hosted Supabase/Postgres, multi-provider LLM routing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist+Pixel&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body>
 
@@ -25,64 +33,174 @@
 </header>
 
 <main>
-  <section class="section">
-    <div class="container">
+  <section class="section section--doc">
+    <div class="pd-wrap">
       <a class="pd-back" href="projects.html">&larr; Projects</a>
-      <p class="pd-label reveal">Selected project</p>
-      <div class="pd-head reveal">
-        <p class="pd-num">02</p>
-        <h1 class="pd-title">Extraction</h1>
-      </div>
-      <p class="pd-tagline reveal">AI image-extraction platform — scoped, shipped, and still operated for Swift ProSys.</p>
 
-      <div class="pd-desc reveal">
-        <p>Sole engineer and client contact, from the first scoping call to production support.
-        The platform replaced manual document and image data entry for language-specific teams —
-        a <strong>cross-platform desktop app</strong> on a <strong>self-hosted Supabase/Postgres
-        backend</strong>, with encrypted key vaulting, role-based access, and over-the-air updates.</p>
-        <p>Work routes across <strong>five model providers</strong> — OpenAI, Google Gemini, Qwen,
-        Vector Engine and local Ollama — behind one interface, so workloads move on price or
-        capability. Template-driven extraction lets non-technical operators add new document types
-        without engineering involvement, and per-project cost analytics make spend predictable
-        before a run.</p>
+      <p class="pd-eyebrow reveal">
+        <span>Client platform</span>
+        <span class="pd-pos"><b>02</b> / 03</span>
+      </p>
+
+      <div class="pd-hero pd-hero--solo">
+        <div class="reveal">
+          <h1 class="pd-title">Extraction</h1>
+          <p class="pd-tagline">AI image-extraction platform — scoped, shipped, and still operated
+          for Swift ProSys.</p>
+        </div>
       </div>
 
-      <div class="pd-outcome reveal">
-        <b>Outcome</b>
-        <p>~200 people use it daily · 6,000,000,000 tokens in five months · 5 LLM providers behind one interface</p>
+      <div class="flow flow--pd reveal">
+        <p class="flow-cap">Workflow</p>
+        <svg class="flow-svg" viewBox="0 0 1310 360" role="img"
+          aria-label="Image extraction workflow: a folder of images becomes a resumable batch queue, images are compressed in a web worker, a template supplies the prompt and JSON schema, a provider-routed vision model extracts the data, results are validated against the schema and escalated back to the model on failure, then exported as JSON, XLSX, DOCX or Markdown with a run ledger of tokens and cost.">
+          <defs>
+            <marker id="f-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7"
+              orient="auto-start-reverse">
+              <path d="M1 1.5 L8 5 L1 8.5" fill="none" stroke="var(--ink-ghost)" stroke-width="1.3"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <!-- hidden continuous path the dot travels -->
+          <path id="flow-main" d="M180 160 H1130" fill="none" stroke="none"/>
+
+          <!-- visible connector segments -->
+          <path class="f-link" d="M180 160 H215" marker-end="url(#f-arr)"/>
+          <path class="f-link" d="M400 160 H435" marker-end="url(#f-arr)"/>
+          <path class="f-link" d="M640 160 H675" marker-end="url(#f-arr)"/>
+          <path class="f-link" d="M880 160 H915" marker-end="url(#f-arr)"/>
+          <path class="f-link" d="M1090 160 H1125" marker-end="url(#f-arr)"/>
+
+          <!-- nodes -->
+          <g class="f-node">
+            <rect class="f-box" x="10" y="118" width="170" height="84" rx="10"/>
+            <text class="f-title" x="95" y="153" text-anchor="middle">FOLDER</text>
+            <text class="f-desc" x="95" y="175" text-anchor="middle">Resumable batch queue</text>
+          </g>
+          <g class="f-node">
+            <rect class="f-box" x="220" y="118" width="180" height="84" rx="10"/>
+            <text class="f-title" x="310" y="153" text-anchor="middle">PREP</text>
+            <text class="f-desc" x="310" y="175" text-anchor="middle">Compressed in a worker</text>
+          </g>
+          <g class="f-node f-node--accent">
+            <rect class="f-box" x="440" y="118" width="200" height="84" rx="10"/>
+            <text class="f-title" x="540" y="153" text-anchor="middle">TEMPLATE</text>
+            <text class="f-desc" x="540" y="175" text-anchor="middle">Prompt + schema, no code</text>
+          </g>
+          <g class="f-node">
+            <rect class="f-box" x="680" y="118" width="200" height="84" rx="10"/>
+            <text class="f-title" x="780" y="153" text-anchor="middle">MODEL</text>
+            <text class="f-desc" x="780" y="175" text-anchor="middle">One interface, any provider</text>
+          </g>
+          <g class="f-node">
+            <rect class="f-box" x="920" y="118" width="170" height="84" rx="10"/>
+            <text class="f-title" x="1005" y="153" text-anchor="middle">VALIDATE</text>
+            <text class="f-desc" x="1005" y="175" text-anchor="middle">Checked against schema</text>
+          </g>
+          <g class="f-node">
+            <rect class="f-box" x="1130" y="118" width="170" height="84" rx="10"/>
+            <text class="f-title" x="1215" y="153" text-anchor="middle">EXPORT</text>
+            <text class="f-desc" x="1215" y="175" text-anchor="middle">JSON · XLSX · DOCX · MD</text>
+          </g>
+          <g class="f-node f-node--aside">
+            <rect class="f-box" x="1130" y="242" width="170" height="84" rx="10"/>
+            <text class="f-title" x="1215" y="277" text-anchor="middle">RUN LEDGER</text>
+            <text class="f-desc" x="1215" y="299" text-anchor="middle">Tokens and cost per run</text>
+            <path class="f-link" d="M1215 202 V237" marker-end="url(#f-arr)"/>
+          </g>
+
+          <!-- retry escalation loop -->
+          <g class="f-loop-wrap">
+            <path class="f-loop" d="M1005 202 V270 Q1005 284 991 284 H794 Q780 284 780 270 V206"
+              fill="none" marker-end="url(#f-arr)"/>
+            <text class="f-loop-label" x="893" y="274" text-anchor="middle">ESCALATE</text>
+          </g>
+
+          <!-- travelling dot -->
+          <g class="flow-dot">
+            <animateMotion dur="8s" repeatCount="indefinite">
+              <mpath href="#flow-main"/>
+            </animateMotion>
+            <circle r="9" fill="var(--accent)" opacity=".16"/>
+            <circle r="3.5" fill="var(--accent)"/>
+          </g>
+        </svg>
       </div>
 
-      <div class="pd-links reveal">
-        <span class="pd-internal">Internal client system — walkthrough on request.</span>
+      <ul class="pd-band reveal">
+        <li><b>~200</b><span>people use it daily</span></li>
+        <li><b>6B</b><span>tokens processed in five months</span></li>
+        <li><b>5</b><span>model providers behind one interface</span></li>
+      </ul>
+
+      <div class="pd-body">
+        <div class="pd-main">
+          <section class="pd-sec reveal">
+            <h2>What I built</h2>
+            <div>
+              <p>The platform replaced manual document and image data entry for language-specific
+              teams — a <strong>cross-platform desktop app</strong> on a <strong>self-hosted
+              Supabase/Postgres backend</strong>, with encrypted key vaulting, role-based access,
+              and over-the-air updates.</p>
+              <p>I own it from the first scoping call to production support.</p>
+            </div>
+          </section>
+          <section class="pd-sec reveal">
+            <h2>Routing</h2>
+            <div>
+              <p>Work routes across <strong>five model providers</strong> — OpenAI, Google Gemini,
+              Qwen, Vector Engine and local Ollama — behind one interface, so workloads move on
+              price or capability.</p>
+            </div>
+          </section>
+          <section class="pd-sec reveal">
+            <h2>Operators</h2>
+            <div>
+              <p>Template-driven extraction lets non-technical operators add new document types
+              without engineering involvement, and per-project cost analytics make spend
+              predictable before a run.</p>
+            </div>
+          </section>
+          <section class="pd-sec reveal">
+            <h2>Getting it right</h2>
+            <div>
+              <p>Every response is validated against the template's JSON schema before it counts.
+              A failure doesn't just retry — it <strong>escalates</strong>: a firmer instruction,
+              then a larger output budget, then a different reasoning setting. Long runs
+              checkpoint to disk, so closing the app mid-batch costs nothing.</p>
+            </div>
+          </section>
+        </div>
+
+        <dl class="pd-ledger reveal">
+          <dt>Client</dt>
+          <dd>Swift ProSys — freelance, remote</dd>
+
+          <dt>Stack</dt>
+          <dd>
+            <ul class="pd-specs">
+              <li>TypeScript</li>
+              <li>Electron</li>
+              <li>OpenAI · Gemini · Qwen · Ollama</li>
+              <li>Supabase · Postgres</li>
+              <li>RBAC</li>
+              <li>OTA updates</li>
+            </ul>
+          </dd>
+        </dl>
       </div>
 
-      <div class="pd-stack reveal">
-        <span class="chip">TypeScript</span>
-        <span class="chip">Electron</span>
-        <span class="chip">OpenAI · Gemini · Qwen · Ollama</span>
-        <span class="chip">Supabase · Postgres</span>
-        <span class="chip">RBAC</span>
-        <span class="chip">OTA updates</span>
-      </div>
-
-      <div class="pd-cover reveal">
-        <img src="assets/covers/extraction.png" alt="Image extraction platform cover">
-      </div>
-
-      <div class="pd-next reveal">
-        <a class="text-link" href="project-newsintel.html">Next — 03 · News Intelligence &rarr;</a>
-      </div>
+      <a class="pd-nextrow reveal" href="project-newsintel.html">
+        <span class="n-label">Next — 03</span>
+        <span class="n-name">News Pipeline</span>
+        <span class="n-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
   </section>
 </main>
 
-<footer class="footer footer--slim">
-  <div class="container footer-base">
-    <span>Methun Raj — Hamburg, Germany</span>
-    <span>Built with Canvas UI · Web Audio</span>
-  </div>
-</footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=2"></script>
 </body>
 </html>
