@@ -646,9 +646,12 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
 .about-h em { color: var(--ink-soft); }
 .about-wrap .about-h { margin-bottom: 2.2rem; }
 .bio .text-link {
+  font-size: inherit;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--ink);
   border-bottom: 1px solid var(--line);
-  transition: border-color .3s var(--ease), color .3s var(--ease);
+  padding-bottom: 0;
 }
 .bio .text-link:hover {
   color: var(--accent);
