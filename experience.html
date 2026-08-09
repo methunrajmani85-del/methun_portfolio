@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experience — Methun Raj</title>
+<meta name="description" content="Experience — Methun Raj. Statista data engineering and analytics, Swift ProSys AI consulting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-head" id="site-head">
+  <nav class="nav container" aria-label="Primary">
+    <a class="brand" href="index.html">Methun Raj<span>.</span></a>
+    <div class="nav-links">
+      <a href="about.html" data-nav>About</a>
+      <a href="experience.html" data-nav>Experience</a>
+      <a href="projects.html" data-nav>Projects</a>
+      <a href="contact.html" data-nav>Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="kicker"><span class="idx">02</span> Experience</p>
+      </div>
+
+      <div class="tl">
+        <button class="tl-row reveal" type="button" data-panel="statista" data-chapter="Chapter 01 of 03">
+          <span class="tl-when">Present</span>
+          <span class="tl-co">
+            <span class="tl-name">Statista</span>
+            <span class="tl-sub">Full-time · Hamburg</span>
+          </span>
+          <span class="tl-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <button class="tl-row reveal" type="button" data-panel="swift" data-chapter="Chapter 02 of 03">
+          <span class="tl-when">Present</span>
+          <span class="tl-co">
+            <span class="tl-name">Swift ProSys</span>
+            <span class="tl-sub">Freelance · Remote</span>
+          </span>
+          <span class="tl-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <button class="tl-row reveal" type="button" data-panel="garuda" data-chapter="Chapter 03 of 03">
+          <span class="tl-when">2020 — 21</span>
+          <span class="tl-co">
+            <span class="tl-name">Garuda Aerospace</span>
+            <span class="tl-sub">Internship · Chennai</span>
+          </span>
+          <span class="tl-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+
+      <p class="edu-label reveal" style="margin-top:4.5rem">Education</p>
+      <div class="tl">
+        <button class="tl-row reveal" type="button" data-panel="hfu" data-chapter="Chapter 01 of 02">
+          <span class="tl-when">2021 — 23</span>
+          <span class="tl-co">
+            <span class="tl-name">Hochschule Furtwangen</span>
+            <span class="tl-sub">M.Sc. Smart Systems</span>
+          </span>
+          <span class="tl-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <button class="tl-row reveal" type="button" data-panel="anna" data-chapter="Chapter 02 of 02">
+          <span class="tl-when">2017 — 21</span>
+          <span class="tl-co">
+            <span class="tl-name">Anna University</span>
+            <span class="tl-sub">B.E. Mechatronics</span>
+          </span>
+          <span class="tl-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer footer--slim">
+  <div class="container footer-base">
+    <span>Methun Raj — Hamburg, Germany</span>
+    <span>Built with Canvas UI · Web Audio</span>
+  </div>
+</footer>
+
+<!-- ================= experience / education sidebar ================= -->
+<div class="xp-overlay" id="xp-overlay" hidden>
+  <div class="xp-backdrop" data-close></div>
+  <aside class="xp-panel" role="dialog" aria-modal="true" aria-label="Details">
+    <div class="xp-top">
+      <p class="xp-chapter" id="xp-chapter">Chapter 01 of 03</p>
+      <button class="xp-close" id="xp-close" type="button">Close &times;</button>
+    </div>
+    <div class="xp-body" id="xp-body">
+
+      <section class="xp-doc" data-doc="statista">
+        <div class="xp-dochead">
+          <h3>Statista</h3>
+        </div>
+        <div class="xp-role">
+          <h4>Data Engineer</h4>
+          <p class="xp-when">Jan 2026 – Present · Hamburg, Full-time</p>
+          <ul>
+            <li>Built the complete news-ingestion pipeline: extracts news from GDELT in real time, embeds it, and stores it in AWS S3 vector buckets.</li>
+            <li>Two pipelines run in parallel — one scans GDELT for news as it breaks, the other processes and stores historical data at the same time.</li>
+            <li>Built a retrieval library on top: vector search with ranking for the most reliable results, plus filters for dates, countries, and more.</li>
+            <li>Developed an internal data-production tool for our analysts: one automated pipeline from data processing to forecasting, KPI derivation, and publishing.</li>
+            <li>Current focus: turning the survey data team's most time-consuming manual workflows into automated Python pipelines — and building them an internal operations app with a proper UI (React front end, Python back end) that runs the whole pipeline.</li>
+          </ul>
+        </div>
+        <div class="xp-role">
+          <h4>Data Analyst</h4>
+          <p class="xp-when">Apr 2025 – Jan 2026 · Hamburg</p>
+          <ul>
+            <li>Owned the Public Cloud, Semiconductors, AI, and Data Center markets — forecasting and publishing forecasts, KPIs, and reports in Statista's Market Insights.</li>
+            <li>Introduced new modelling methods with a real-time news indicator as the headline feature: forecasts reflect what is actually happening in the news.</li>
+            <li>KPI coverage included revenue, market shares, and tariff changes; introduced new segments across these markets.</li>
+            <li>Helped clients with their data and methodology requests.</li>
+          </ul>
+        </div>
+        <div class="xp-role">
+          <h4>Junior Analyst</h4>
+          <p class="xp-when">Dec 2023 – Mar 2025 · Hamburg</p>
+          <ul>
+            <li>Handled the Data Center and Public Cloud markets.</li>
+            <li>Produced forecasts and published forecasts, KPIs, and reports in Statista's Market Insights.</li>
+          </ul>
+        </div>
+        <div class="xp-role">
+          <h4>Working Student, Data</h4>
+          <p class="xp-when">Jul 2022 – Oct 2023 · Hamburg</p>
+          <ul>
+            <li>Built web scrapers to collect data and convert the scraped data into structured data.</li>
+            <li>Explored Common Crawl data — extracted the useful parts, converted them into structured data, and stored them.</li>
+            <li>Used NLP with Google's BERT model to find similar data across multiple datasets and compare how it's presented differently — e.g. product data across multiple stores.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="xp-doc" data-doc="swift">
+        <div class="xp-dochead">
+          <h3>Swift ProSys</h3>
+        </div>
+        <div class="xp-role">
+          <h4>AI Consultant &amp; AI Automation Engineer</h4>
+          <p class="xp-when">Mar 2025 – Present · Freelance, Remote</p>
+          <ul>
+            <li>Designed AI-powered extraction workflows for image and document processing use cases.</li>
+            <li>Built production-oriented tools for OCR, structured JSON extraction, and multi-provider LLM automation.</li>
+            <li>Delivered applications focused on secure processing, operator usability, and business-ready outputs.</li>
+            <li>Sole engineer and client contact — scoping, system design, shipping, and ongoing maintenance of a platform used daily by ~200 people.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="xp-doc" data-doc="garuda">
+        <div class="xp-dochead">
+          <h3>Garuda Aerospace</h3>
+        </div>
+        <div class="xp-role">
+          <h4>Technical Intern</h4>
+          <p class="xp-when">Jul 2020 – Jan 2021 · Chennai, India</p>
+          <ul>
+            <li>Worked on data preparation, visualization, statistical analysis, and machine learning assignments.</li>
+            <li>Identified the key influencing features affecting drone battery performance.</li>
+            <li>Identified and reported drone issues during flight for the engineering team.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="xp-doc" data-doc="hfu">
+        <div class="xp-dochead">
+          <h3>Hochschule Furtwangen</h3>
+        </div>
+        <div class="xp-role">
+          <h4>Master Thesis</h4>
+          <p class="xp-when">Mar 2023 – Oct 2023 · Germany</p>
+          <ul>
+            <li>Developed a classifier using Convolutional Neural Networks (CNNs) to identify common plant and insect species in a specific region of Germany.</li>
+            <li>Collected and curated a large dataset of plant and insect images through web scraping, followed by data cleaning and preprocessing.</li>
+            <li>Designed and implemented an API for the classifier — users submit images and receive species identification results.</li>
+            <li>Built a continuous-training pipeline, ensuring consistent performance improvements and adaptability to new data.</li>
+          </ul>
+        </div>
+        <div class="xp-role">
+          <h4>What I studied</h4>
+          <p class="xp-when">M.Sc. Smart Systems · 2021 – 2023</p>
+          <ul>
+            <li>Machine learning, computer vision, and data-driven system design.</li>
+            <li>Embedded and smart systems engineering, from sensors to deployed services.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="xp-doc" data-doc="anna">
+        <div class="xp-dochead">
+          <h3>Anna University</h3>
+        </div>
+        <div class="xp-role">
+          <h4>What I studied</h4>
+          <p class="xp-when">B.E. Mechatronics Engineering · 2017 – 2021 · Grade 8.27 / 10</p>
+          <ul>
+            <li>Mechanics, electronics, and control systems — the mechatronics core.</li>
+            <li>Programming, statistics, and data analysis fundamentals.</li>
+            <li>Applied project work across automation and robotics.</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </aside>
+</div>
+
+<script src="js/site.js"></script>
+</body>
+</html>
