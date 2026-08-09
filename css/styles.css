@@ -1160,8 +1160,8 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
   transition: opacity .35s var(--ease);
 }
 /* Optical size: fine-line / thin marks need a bump to match weight */
-.tool-mark--codex { width: 52px; height: 52px; }
-.tool-mark--skills { width: 30px; height: 46px; }
+.tool-mark--codex { width: 64px; height: 64px; }
+.tool-mark--skills { width: 32px; height: 48px; }
 .tool:hover .tool-mark { opacity: 1; }
 .tool-name {
   font-size: .78rem;
