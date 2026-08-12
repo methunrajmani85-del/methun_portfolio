@@ -13,10 +13,10 @@
   onScroll();
 
   /* ---------- nav: landing hides links; subpages hide their own link ---------- */
-  var path = location.pathname.split("/").pop() || "index.html";
+  var path = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "");
   var navWrap = document.querySelector(".nav-links");
   if (navWrap) {
-    if (path === "index.html") {
+    if (path === "index") {
       navWrap.style.display = "none"; // the index rows are the navigation
     } else {
       Array.prototype.forEach.call(navWrap.querySelectorAll("[data-nav]"), function (a) {
@@ -222,12 +222,12 @@
 
   /* ---------- page transitions ---------- */
   document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest("a[href$='.html']");
+    var a = e.target.closest && e.target.closest("a[href]");
     if (!a || a.target === "_blank") return;
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return;
-    var page = url.pathname.split("/").pop();
+    var page = (url.pathname.split("/").pop() || "index").replace(/\.html$/, "");
     if (page === path) return; // already here
     e.preventDefault();
     confirmNav();
