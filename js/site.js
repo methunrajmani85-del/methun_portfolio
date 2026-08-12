@@ -173,7 +173,7 @@
   /* Anything that navigates or opens something gets the full tick. */
   var HOVER_SEL = [
     ".nav-links a", ".brand", ".index-row", ".text-link",
-    ".contact-links a", ".live-link",
+    ".contact-links a", ".live-link", ".copy-mail", ".k-avail",
     ".proj-card", ".pd-nextrow", ".pd-back", ".tl-row", ".xp-close", ".now-status"
   ].join(", ");
   /* Surfaces that highlight on hover but aren't clickable get a quieter cue,
@@ -190,6 +190,35 @@
   document.addEventListener("pointerup", function (e) {
     if (e.target.closest && e.target.closest("a, button")) release();
   }, { passive: true });
+
+  /* ---------- copy email (contact) ---------- */
+  var copyBtn = document.querySelector("[data-copy]");
+  if (copyBtn) {
+    var copyLabel = copyBtn.textContent;
+    var copyTimer = 0;
+    copyBtn.addEventListener("click", function () {
+      var addr = copyBtn.getAttribute("data-copy");
+      function done(ok) {
+        /* no clipboard (insecure context, old browser): show the address
+           itself so it can be selected by hand */
+        copyBtn.textContent = ok ? "Copied ✓" : addr;
+        copyBtn.classList.toggle("copied", ok);
+        clearTimeout(copyTimer);
+        copyTimer = setTimeout(function () {
+          copyBtn.textContent = copyLabel;
+          copyBtn.classList.remove("copied");
+        }, 1800);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(
+          function () { done(true); confirmNav(); },
+          function () { done(false); }
+        );
+      } else {
+        done(false);
+      }
+    });
+  }
 
   /* ---------- page transitions ---------- */
   document.addEventListener("click", function (e) {

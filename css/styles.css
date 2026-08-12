@@ -323,13 +323,25 @@ h1 em, h2 em { font-style: normal; }
   letter-spacing: .18em;
   text-transform: uppercase;
 }
-.contact-links a {
+.contact-links a,
+.contact-links .copy-mail {
   color: var(--ink-faint);
   border-bottom: 1px solid var(--line-soft);
   padding-bottom: .4rem;
   transition: color .3s var(--ease), border-color .3s var(--ease);
 }
-.contact-links a:hover { color: var(--ink); border-color: var(--ink); }
+.contact-links a:hover,
+.contact-links .copy-mail:hover { color: var(--ink); border-color: var(--ink); }
+.copy-mail {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  background: none;
+  border: 0;
+  padding: 0 0 .4rem;
+  cursor: pointer;
+}
+.copy-mail.copied { color: #9DBE8C; border-color: rgba(157, 190, 140, .5); }
 
 /* ---------------- sound: always on, interaction cues only ---------------- */
 
@@ -361,9 +373,16 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
 /* ---------------- responsive ---------------- */
 @media (max-width: 640px) {
   .nav { gap: 1rem; }
-  .nav-links { display: none; }
+  /* the links stay — on a subpage they are the only way around the site */
+  .nav-links { gap: .95rem; font-size: .62rem; letter-spacing: .08em; }
+  .brand { font-size: .95rem; }
   .kicker { font-size: .62rem; letter-spacing: .22em; gap: .8rem; }
   .kicker::before { width: 1.6rem; }
+}
+@media (max-width: 360px) {
+  .nav.container { width: calc(100% - 1.6rem); }
+  .nav-links { gap: .7rem; font-size: .58rem; letter-spacing: .04em; }
+  .brand { font-size: .88rem; }
 }
 
 /* ---------------- reduced motion ---------------- */
@@ -1094,3 +1113,128 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
 /* taller blocks than a paragraph, so they need more air than .pd-sec gives */
 .pd-sec--block { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
 .pd-sec--block > div { min-width: 0; }
+
+/* ---------------- quiet dither: canvas fields & cover monograms ---------------- */
+.hero-dither,
+.contact-dither {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-dither { opacity: .5; }
+.contact-dither {
+  opacity: .45;
+  -webkit-mask-image: radial-gradient(120% 95% at 20% 32%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(120% 95% at 20% 32%, #000 0%, transparent 72%);
+}
+.hero-dither canvas,
+.contact-dither canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.section--center { position: relative; }
+.section--center .container { position: relative; z-index: 1; }
+
+.proj-cover { position: relative; }
+.proj-cover canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.proj-cover.dithered img { visibility: hidden; }
+
+/* ---------------- landing: kicker + availability ---------------- */
+.hero-kicker { align-items: baseline; }
+.k-avail {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  color: var(--ink-faint);
+  letter-spacing: .22em;
+  transition: color .3s var(--ease);
+}
+.k-avail:hover { color: var(--ink); }
+.k-avail::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9DBE8C;
+  animation: pulse 2.4s infinite;
+}
+@media (max-width: 640px) {
+  .hero-kicker { flex-wrap: wrap; row-gap: .7rem; }
+  .k-avail { margin-left: 0; }
+}
+
+/* ---------------- projects: card meta line ---------------- */
+.proj-meta {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-top: .55rem;
+}
+.m-live {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--ink-faint);
+}
+.m-live::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #9DBE8C;
+  animation: pulse 2.4s infinite;
+}
+
+/* ---------------- contact: status line ---------------- */
+.contact-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  margin-top: 2.2rem;
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.contact-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9DBE8C;
+  animation: pulse 2.4s infinite;
+}
+
+/* ---------------- experience: one-line role summary in the row ---------------- */
+.tl-note {
+  display: block;
+  width: 100%;
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: var(--ink-ghost);
+  margin-top: .3rem;
+}
+
+/* ---------------- about: the opener is a bio, let it breathe ---------------- */
+.pd-tagline--wide { max-width: 46ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-avail::before,
+  .m-live::before,
+  .contact-status::before { animation: none; }
+}
