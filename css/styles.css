@@ -152,14 +152,19 @@ h1 em, h2 em { font-style: normal; }
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  /* a glass over the water, not a lid — the drift blurs through */
+  /* no bar — the links float straight on the water. Only once the page
+     scrolls does a glass blur fade in, so mid-page text never collides
+     with the links. */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: border-color .4s var(--ease), background .4s var(--ease);
+}
+.site-head.scrolled {
+  border-bottom-color: var(--line-soft);
   background: color-mix(in srgb, var(--bg) 60%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid transparent;
-  transition: border-color .4s var(--ease);
 }
-.site-head.scrolled { border-bottom-color: var(--line-soft); }
 
 .nav {
   height: var(--nav-h);
