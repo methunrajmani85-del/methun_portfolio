@@ -1,12 +1,11 @@
-/* Methun Raj — QuietDither: ordered-dither canvas fields & cover monograms.
-   One engine, two modes, zero dependencies.
+/* Methun Raj — QuietDither: ordered-dither cover monograms. Zero deps.
 
-   field    — a slow-drifting noise field pushed through an 8×8 Bayer matrix,
-              drawn as warm 1-cell pixels. Mounted behind the landing index
-              (under the ripple glints) and behind the contact opener.
    monogram — the projects covers: the same dot grid the static SVG covers
               use, but live. Idle, the letters sit barely resolved out of the
               noise; hovering the card settles the noise and warms the dots.
+
+   The pointer-following field mode was retired when the Stillwater water
+   background took over carrying the pointer's wake.
 
    The static SVG <img> stays in the markup as the no-JS fallback. Reduced
    motion gets a single resolved frame and no listeners. */
@@ -79,84 +78,7 @@
     return start;
   }
 
-  /* ---------- mode: field ---------- */
-  function attachField(host) {
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d", { alpha: true });
-    if (!ctx) return;
-    host.appendChild(canvas);
-
-    var cell = parseFloat(host.getAttribute("data-cell")) || 6;
-    var strength = parseFloat(host.getAttribute("data-strength")) || 1;
-    var ink = hexRgb("#ECE8E0");
-
-    var gw = 0, gh = 0, buf = null, bufCtx = null, image = null;
-    var px = -1e5, py = -1e5; // pointer, in grid units
-
-    function resize() {
-      var w = host.clientWidth, h = host.clientHeight;
-      if (w < 4 || h < 4) return;
-      canvas.width = w; canvas.height = h;
-      gw = Math.ceil(w / cell); gh = Math.ceil(h / cell);
-      buf = buf || document.createElement("canvas");
-      buf.width = gw; buf.height = gh;
-      bufCtx = buf.getContext("2d");
-      image = bufCtx.createImageData(gw, gh);
-      ctx.imageSmoothingEnabled = false;
-    }
-
-    function render(t) {
-      if (!image) return;
-      /* At rest the canvas is empty — the field only wakes in a small
-         pocket around the pointer, so the page stays completely calm. */
-      if (px < -1e4) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        return;
-      }
-      var data = image.data;
-      var drift = t * 0.05;
-      var i = 0;
-      for (var y = 0; y < gh; y++) {
-        for (var x = 0; x < gw; x++) {
-          var dx = x - px, dy = y - py;
-          var d2 = dx * dx + dy * dy;
-          var b = 0;
-          if (d2 < 900) {
-            b = 0.5 * Math.exp(-d2 / 360) *
-                (0.55 + 0.55 * noise(x * 0.05, y * 0.05, drift));
-          }
-          var on = b * strength > threshold(x, y);
-          data[i] = ink[0]; data[i + 1] = ink[1]; data[i + 2] = ink[2];
-          data[i + 3] = on ? 64 : 0;
-          i += 4;
-        }
-      }
-      bufCtx.putImageData(image, 0, 0);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(buf, 0, 0, gw, gh, 0, 0, canvas.width, canvas.height);
-    }
-
-    resize();
-    var start = drive(canvas, render, 30);
-
-    if (!motionQuery.matches) {
-      var zone = host.parentElement || host;
-      zone.addEventListener("pointermove", function (e) {
-        var r = canvas.getBoundingClientRect();
-        px = (e.clientX - r.left) / cell;
-        py = (e.clientY - r.top) / cell;
-        start();
-      }, { passive: true });
-      zone.addEventListener("pointerleave", function () {
-        px = py = -1e5;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }, { passive: true });
-    }
-
-    new ResizeObserver(function () { resize(); render(0); start(); }).observe(host);
-  }
-
-  /* ---------- mode: monogram ---------- */
+  /* ---------- cover monograms ---------- */
   /* Geometry mirrors the static SVG covers: a 1600×1000 plate, background
      grid dots every 26 units (r 1.6), letter dots every 22 units (r 6.4),
      bold Helvetica at 470 with wide tracking. */
@@ -184,7 +106,7 @@
       plate = plate || document.createElement("canvas");
       plate.width = w; plate.height = h;
       var p = plate.getContext("2d");
-      p.fillStyle = "#0F0E0C";
+      p.fillStyle = "#070B14"; /* matches --bg, so covers sit in the water family */
       p.fillRect(0, 0, w, h);
       p.fillStyle = "rgba(236, 232, 224, .028)";
       p.beginPath();
@@ -279,8 +201,6 @@
 
   /* ---------- init ---------- */
   function init() {
-    Array.prototype.forEach.call(
-      document.querySelectorAll('[data-dither="field"]'), attachField);
     Array.prototype.forEach.call(
       document.querySelectorAll("[data-monogram]"), attachMonogram);
   }

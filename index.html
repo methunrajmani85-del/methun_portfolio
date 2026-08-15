@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=3">
+<link rel="stylesheet" href="css/styles.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Methun Raj",
  "jobTitle":"AI Consultant & Engineer",
@@ -48,7 +48,6 @@
     <div class="ripple-wrap" id="ripple-wrap">
       <!-- Canvas UI (Ripple, vanilla): hidden source buffer + WebGL overlay.
            Content below is plain DOM and stays fully selectable & clickable. -->
-      <div class="hero-dither" data-dither="field" aria-hidden="true"></div>
       <canvas id="ripple-source" layoutsubtree="true" style="display:none" aria-hidden="true"></canvas>
       <div id="ripple-content">
         <div class="hero-inner">
@@ -90,8 +89,9 @@
 </main>
 
 
+<script src="js/water.js?v=2"></script>
 <script src="js/ripple.js?v=2"></script>
-<script src="js/dither.js?v=1"></script>
+<script src="js/dither.js?v=3"></script>
 <script src="js/site.js?v=3"></script>
 </body>
 </html>
