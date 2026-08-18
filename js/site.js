@@ -195,6 +195,7 @@
   var copyBtn = document.querySelector("[data-copy]");
   if (copyBtn) {
     var copyLabel = copyBtn.textContent;
+    var copyStatus = document.getElementById("copy-status");
     var copyTimer = 0;
     copyBtn.addEventListener("click", function () {
       var addr = copyBtn.getAttribute("data-copy");
@@ -203,10 +204,18 @@
            itself so it can be selected by hand */
         copyBtn.textContent = ok ? "Copied ✓" : addr;
         copyBtn.classList.toggle("copied", ok);
+        /* the visible label swap alone isn't announced — mirror it to the
+           polite live region so screen readers hear the outcome */
+        if (copyStatus) {
+          copyStatus.textContent = ok
+            ? "Email address copied to clipboard"
+            : "Couldn't access the clipboard — the address is shown next to the button";
+        }
         clearTimeout(copyTimer);
         copyTimer = setTimeout(function () {
           copyBtn.textContent = copyLabel;
           copyBtn.classList.remove("copied");
+          if (copyStatus) copyStatus.textContent = "";
         }, 1800);
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -247,17 +256,27 @@
     var closeBtn = document.getElementById("xp-close");
     var lastFocused = null;
     var FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    /* everything outside the dialog — inert while the panel is open, so
+       neither Tab nor a screen reader's virtual cursor can leave it */
+    var pageChrome = document.querySelectorAll(".site-head, main");
+    function setPageInert(on) {
+      Array.prototype.forEach.call(pageChrome, function (el) { el.inert = on; });
+    }
 
     function openPanel(key, chapter) {
       Array.prototype.forEach.call(docs, function (d) {
         d.classList.toggle("show", d.getAttribute("data-doc") === key);
       });
       xpChapter.textContent = chapter;
+      /* name the dialog after the document it opened, not a generic "Details" */
+      var docTitle = xpBody.querySelector('.xp-doc[data-doc="' + key + '"] h3');
+      panel.setAttribute("aria-label", docTitle ? docTitle.textContent : "Details");
       overlay.hidden = false;
       xpBody.parentNode.scrollTop = 0;
       requestAnimationFrame(function () { overlay.classList.add("open"); });
       document.body.style.overflow = "hidden";
-      lastFocused = document.activeElement;
+      lastFocused = document.activeElement; /* before inert — inert can move focus */
+      setPageInert(true);
       closeBtn.focus();
       confirmNav();
     }
@@ -265,6 +284,7 @@
       if (overlay.hidden) return;
       overlay.classList.remove("open");
       document.body.style.overflow = "";
+      setPageInert(false); /* before refocusing — inert elements can't take focus */
       tick();
       if (lastFocused && lastFocused.focus) lastFocused.focus();
       lastFocused = null;
