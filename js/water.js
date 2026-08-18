@@ -7,8 +7,8 @@
                       leaves a wake like a hand dragged through still water.
    pass 2 (surface) — simplex-noise water, domain-warped twice so the field
                       folds over itself and reads as liquid. A five-stop
-                      palette of deep blues with a rare cream crest resolves
-                      out of near-black; the wake bends and swirls the
+                      palette of deep sea-glass teals with a rare cream crest
+                      resolves out of near-black; the wake bends and swirls the
                       surface and lifts a pale-cream glow. A resting pool of
                       light leans gently toward the pointer.
 
@@ -229,20 +229,20 @@
     "}"
   ].join("\n");
 
-  /* ---------- palette — deep water under ink ----------
-     Blue-family water with a rare cream crest, in the same register as the
-     reference the design was tuned against — but every stop shifted to sit
-     with this site's ink and stay a touch darker at rest. */
+  /* ---------- palette — deep teal water under ink ----------
+     Sea-glass teal with a rare cream crest, sitting close to the page's
+     blue-family neutrals so no surface reads as a black slab on the water —
+     but a touch greener and more luminous than a straight blue. */
   function hex(hexStr) {
     var n = parseInt(hexStr.slice(1), 16);
     return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
   }
   var PALETTE = {
-    stops: ["#020409", "#0e2246", "#1c4173", "#35598c", "#e8d19c"].map(hex),
+    stops: ["#020a0b", "#0d3238", "#1a6f6d", "#2f8f80", "#e8d9a8"].map(hex),
     glowCore: hex("#f8eec9"),
-    glowMid: hex("#4c82ba"),
-    glowDeep: hex("#24407c"),   /* deep blue undertow of the wake */
-    lightTint: hex("#55719c")
+    glowMid: hex("#43b3a2"),
+    glowDeep: hex("#155e63"),   /* deep teal undertow of the wake */
+    lightTint: hex("#4f9a90")
   };
 
   var TUNE = {

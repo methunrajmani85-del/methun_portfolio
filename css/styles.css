@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------
-   Theme — deep-water blue under cream ink, Japanese-minimal restraint.
-   The neutrals sit in the same blue family as the Stillwater background
+   Theme — deep-water teal under cream ink, Japanese-minimal restraint.
+   The neutrals sit close to the Stillwater background's deep-teal family
    (js/water.js) so no surface ever reads as a black slab on the water.
 ------------------------------------------------------------------ */
 :root {
@@ -11,7 +11,7 @@
   --ink:       #ECE8E0;
   --ink-soft:  #B7B1A6;
   --ink-faint: rgba(236, 232, 224, .58);
-  --ink-ghost: rgba(236, 232, 224, .34);
+  --ink-ghost: rgba(236, 232, 224, .52);
   --line:      rgba(236, 232, 224, .14);
   --line-soft: rgba(236, 232, 224, .08);
   --accent:    #E0884E;
@@ -293,21 +293,42 @@ h1 em, h2 em { font-style: normal; }
 }
 /* a tonal shift, not a lid — the water keeps moving underneath */
 .section-alt { background: color-mix(in srgb, var(--bg-alt) 55%, transparent); }
+.pd-links { margin-top: 1.7rem; }
 .live-link {
   display: inline-flex;
   align-items: center;
   gap: .55rem;
-  background: var(--ink);
-  color: var(--bg);
+  background: color-mix(in srgb, var(--bg) 46%, transparent);
+  color: var(--ink);
+  border: 1px solid var(--line);
   font-size: .76rem;
   font-weight: 500;
   letter-spacing: .16em;
   text-transform: uppercase;
-  padding: .85rem 1.5rem;
-  border-radius: 999px;
-  transition: background .35s var(--ease), transform .35s var(--ease);
+  padding: .72rem 1.15rem;
+  border-radius: 8px;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(236, 232, 224, .1);
+  transition:
+    background .3s var(--ease),
+    border-color .3s var(--ease),
+    transform .16s var(--ease);
 }
-.live-link:hover { background: var(--ink-soft); transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) {
+  .live-link:hover {
+    background: color-mix(in srgb, var(--panel) 58%, transparent);
+    border-color: rgba(236, 232, 224, .28);
+  }
+}
+.live-link:active { transform: scale(.97); }
+@media (prefers-reduced-transparency: reduce) {
+  .live-link {
+    background: var(--panel);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
 .live-dot {
   width: 6px; height: 6px; border-radius: 50%;
   background: #9DBE8C;
@@ -423,7 +444,8 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
   .f-loop { animation: none; }
   .flow-dot { display: none; }
   .flow .f-node, .flow .f-loop-wrap { opacity: 1; transform: none; transition: none; }
-  .live-link:hover { transform: none; }
+  .live-link:hover,
+  .live-link:active { transform: none; }
   .pd-nextrow { transition: none; }
   .pd-nextrow:hover { padding-inline: .4rem; }
   .pd-nextrow:hover .n-arrow { transform: none; }
@@ -1249,3 +1271,43 @@ body.leaving { opacity: 0; transition: opacity .18s var(--ease); }
   .m-live::before,
   .contact-status::before { animation: none; }
 }
+
+/* ---------------- review fixes ---------------- */
+/* dark UI chrome: native scrollbars and controls follow the theme */
+html { color-scheme: dark; }
+
+/* one visible focus ring for every interactive element */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* skip link — off-canvas until it receives keyboard focus */
+.skip-link {
+  position: fixed;
+  top: .9rem;
+  left: .9rem;
+  z-index: 100;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: .6rem .9rem;
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transform: translateY(-280%);
+  transition: transform .3s var(--ease);
+}
+.skip-link:focus-visible { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .skip-link { transition: none; }
+}
+
+.brand { transition: color .3s var(--ease); }
+.brand:hover { color: var(--ink-soft); }
+
+/* the drawer's scroll shouldn't chain into the page behind it */
+.xp-panel { overscroll-behavior: contain; }
+
+.edu-label { margin-top: 4.5rem; }
